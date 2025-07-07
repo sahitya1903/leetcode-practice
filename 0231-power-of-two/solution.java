@@ -1,12 +1,6 @@
 class Solution {
     public boolean isPowerOfTwo(int n) {
-        if(n==1) return true;
-        int c=(int)(Math.log(n)/Math.log(2));
-        int p=1;
-        for(int i=0;i<=c;i++){
-            p*=2;
-            if(p==n) return true;
-        }
+        if(n>0 && (n & (n-1))==0) return true;
         return false;
     }
 }
