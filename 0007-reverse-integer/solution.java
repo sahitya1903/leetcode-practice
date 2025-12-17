@@ -1,23 +1,15 @@
 class Solution {
     public int reverse(int x) {
-        long ans=0;
-        if(x>=0){
-            while(x>0){
-                int c=x%10;
-                ans=ans*10+c;
-                x/=10;
-            }
-        }else{
-            int n=-1*x;
-            while(n>0){
-                int c=n%10;
-                ans=ans*10+c;
-                n/=10;
-            }
-            ans=-1*ans;
+        int n=0;
+        while(x!=0){
+            int c=x%10;
+            x/=10;
+            if(n>Integer.MAX_VALUE/10 || (n==Integer.MAX_VALUE/10 && c>7) ) return 0;
+            if(n<Integer.MIN_VALUE/10 || (n==Integer.MIN_VALUE/10 && c<-8) ) return 0;
+            n=n*10+c;
         }
-        if((int)ans!=ans) return 0;
-        return (int)ans;
-      
+        return n;
+        
     }
+
 }
