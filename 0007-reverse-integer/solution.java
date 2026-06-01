@@ -1,15 +1,18 @@
 class Solution {
-    public int reverse(int x) {
-        int n=0;
-        while(x!=0){
-            int c=x%10;
-            x/=10;
-            if(n>Integer.MAX_VALUE/10 || (n==Integer.MAX_VALUE/10 && c>7) ) return 0;
-            if(n<Integer.MIN_VALUE/10 || (n==Integer.MIN_VALUE/10 && c<-8) ) return 0;
-            n=n*10+c;
+    public int helper(int y) {;
+        int ans=0;
+        while(y>0){
+            int temp=y%10;
+            y/=10;
+            if(ans>Integer.MAX_VALUE/10 || (ans==Integer.MAX_VALUE/10 && temp>7)) return 0;
+            if(ans<Integer.MIN_VALUE/10 || (ans==Integer.MIN_VALUE/10 && temp<-8)) return 0;
+            ans=ans*10+temp;
         }
-        return n;
-        
+        return ans;
     }
 
+    public int reverse(int x){
+        if(x>0) return helper(x);
+        else return -helper(-x);
+    }
 }
