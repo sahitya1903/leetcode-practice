@@ -1,19 +1,17 @@
 class Solution {
     public List<List<Integer>> generate(int numRows) {
-        List<List<Integer>> list=new ArrayList<>();
-        for(int i=0;i<numRows;i++){
-            List<Integer> nums=new ArrayList<>();
-            for(int j=0;j<=i;j++){
-                if(j==0) nums.add(1);
-                else if(j==i) nums.add(1);
-                else{
-                    List<Integer> prev=list.get(list.size()-1);
-                    int a=prev.get(j-1)+prev.get(j);
-                    nums.add(j,a);
-                }
-            }list.add(nums);
+        List<List<Integer>> pascal = new ArrayList<>();
+        pascal.add(Arrays.asList(1));
+        for(int i=1;i<numRows;i++){
+            List<Integer>prev=pascal.get(i-1);
+            List<Integer>curr= new ArrayList<>();
+            curr.add(1);
+            for(int j=1;j<i;j++){
+                curr.add(prev.get(j-1)+prev.get(j));
+            }
+            curr.add(1);
+            pascal.add(curr);
         }
-        return list;
-
+        return pascal;
     }
 }
