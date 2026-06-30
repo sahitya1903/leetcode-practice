@@ -4,25 +4,14 @@ class Solution {
 
         for(int i=0;i<s.length();i++){
             char ch=s.charAt(i);
-            if(ch=='(' || ch=='[' || ch=='{'){
-                s1.push(ch);
-            }
+            if(ch=='(' || ch=='[' || ch=='{') s1.push(ch);
             else{
-                if(s1.isEmpty()){
-                    return false;
-                }
-                else if((s1.peek()=='(' && ch==')') || (s1.peek()=='[' && ch==']') || (s1.peek()=='{' && ch=='}' )){
-                    s1.pop();
-                }
-                else{
-                    return false;
-                }
+                if(s1.isEmpty()) return false;
+                char c=s1.peek();
+                if((c=='(' && ch==')') || (c=='[' && ch==']') || (c=='{' && ch=='}' )) s1.pop();
+                else return false;
             }
         }
-        if(s1.isEmpty()){
-            return true;   
-        } else{
-            return false;
-        }
+        return s1.isEmpty();
     }
 }
