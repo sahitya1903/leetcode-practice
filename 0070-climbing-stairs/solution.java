@@ -1,15 +1,13 @@
 class Solution {
-    int memo[];
-    public int solve(int n){
-        if(n==1) return 1;
-        if(n==2) return 2;
-        if(memo[n]!=0) return memo[n];
-        memo[n]=solve(n-1)+solve(n-2);
-        return memo[n];
+    public int helper(int n,int[] dp){
+        if(n<0) return 0;
+        if(n==0) return 1;
+        if(dp[n]!=0) return dp[n];
+        dp[n]= helper(n-1,dp)+helper(n-2,dp);
+        return dp[n];
     }
-
     public int climbStairs(int n) {
-        memo=new int[n+1];
-        return solve(n);
+        int dp[]=new int[n+1];
+        return helper(n,dp);
     }
 }
